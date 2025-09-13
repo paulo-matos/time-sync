@@ -1,0 +1,337 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    width: 350px;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.container {
+    padding: 20px;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.format-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.format-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.format-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.reset-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(180deg);
+}
+
+.clocks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.clock-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    min-height: 60px; /* consistent height */
+    position: relative;
+}
+
+.clock-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1; /* fills remaining space */
+}
+
+.clock-card.day {
+    background: linear-gradient(135deg, #6ec6ff 0%, #2196f3 100%);
+    color: white;
+}
+
+.clock-card.night {
+    background: linear-gradient(135deg, #1a1a2e 0%, #3a3a5e 100%);
+    color: white;
+}
+
+.clock-card.local {
+    border: 2px solid rgba(255, 215, 0, 0.6); /* subtle yellow border */
+    background: inherit; /* use day/night background */
+}
+
+.clock-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.timezone-label {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.local-badge {
+    background: rgba(255, 215, 0, 0.3);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: none;
+    color: white;
+    background-color: transparent;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.remove-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.time-display {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: left;
+    margin: 0;
+}
+
+.time-display.current-time {
+    font-weight: 600;
+}
+
+.time-display.edited-time {
+    font-weight: 300;
+    opacity: 0.9;
+    position: relative;
+}
+
+.edited-badge {
+    font-size: 10px;
+    margin-left: 6px;
+    color: #ffcc00;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.time-part {
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.time-part:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.time-part.editing {
+    background: rgba(255, 255, 255, 0.3);
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.day-night-indicator {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.add-timezone {
+    position: relative;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.timezone-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+.timezone-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.timezone-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.search-results.hidden {
+    display: none;
+}
+
+.search-result {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s ease;
+}
+
+.search-result:hover {
+    background: #f8f9fa;
+}
+
+.search-result:last-child {
+    border-bottom: none;
+}
+
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Scrollbar styles */
+.clocks-container::-webkit-scrollbar,
+.search-results::-webkit-scrollbar {
+    width: 6px;
+}
+
+.clocks-container::-webkit-scrollbar-track,
+.search-results::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.clocks-container::-webkit-scrollbar-thumb,
+.search-results::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.clocks-container::-webkit-scrollbar-thumb:hover,
+.search-results::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.sun-icon, .moon-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.sun-icon {
+    animation: rotate 40s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.moon-icon {
+    animation: glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+
+.edited-hourglass {
+    position: absolute;
+    bottom: 8px;      /* distance from bottom of card */
+    right: 8px;       /* distance from right of card */
+    font-size: 16px;
+    transform-origin: center bottom;
+    animation: tip-bob 2s infinite ease-in-out;
+}
+
+@keyframes tip-bob {
+    0%   { transform: rotate(-8deg) translateY(0); }
+    25%  { transform: rotate(8deg) translateY(-1px); }
+    50%  { transform: rotate(-8deg) translateY(0); }
+    75%  { transform: rotate(8deg) translateY(-1px); }
+    100% { transform: rotate(-8deg) translateY(0); }
+}
+
+.spinner {
+  font-style: italic;
+  color: gray;
+  padding: 0.5em;
+}

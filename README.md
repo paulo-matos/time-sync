@@ -33,7 +33,8 @@ Click Load unpacked and select the cloned repository folder.
 
 The extension should appear in your toolbar.
 
-Usage
+### Usage
+
 Click the extension icon to open the popup.
 
 Add a new timezone using the search bar:
@@ -54,7 +55,8 @@ Toggle between 12H/24H formats with the 24H/12H button.
 
 Optional: Rename clocks by clicking the timezone label (editable).
 
-Development
+### Development
+
 The timezone list is located in timezones.js.
 
 Add new timezones by updating the TIMEZONE_DATA array with:
@@ -67,20 +69,18 @@ aliases: searchable keywords (city names, country, abbreviation, etc.).
 
 Main app logic is in popup.html and popup.js.
 
-Technologies
+### Technologies
+
 JavaScript (ES6+)
 
 Luxon for date/time management
 
 Chrome Extensions API
 
-Notes
+### Notes
+
 Only valid IANA timezone names are supported for Luxon compatibility.
 
 Day/Night calculation is approximate based on representative city coordinates.
 
 No external API is required for search; all data is local for speed and reliability.
-
-```
-
-```
